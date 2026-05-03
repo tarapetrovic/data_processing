@@ -24,7 +24,7 @@ def clean_events(events):
                 event.get('event_type') is None or
                 event.get('user_id') is None or
                 event.get('event_data') is None):
-            # print(f"Skipping event with missing fields: {event}")
+            #print(f"Skipping event with missing fields: {event}")
             continue
 
         if isinstance(event.get('id'), int) and event.get('timestamp') and isinstance(event.get('timestamp'),
