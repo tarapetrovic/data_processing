@@ -219,5 +219,6 @@ __marimo__/
 
 # Adding myself:
 *.db
+*.png
 data/
 .idea/
