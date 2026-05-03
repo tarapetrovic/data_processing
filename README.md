@@ -87,7 +87,7 @@ GET http://localhost:8000/map-stats/Desert?date_from=2026-04-05&date_to=2026-04-
 
 ## Design decisions and assumptions
 
-- **Session tracking** is done without using the `state` field — sessions are reconstructed by grouping pings per user, sorting by timestamp, and splitting whenever the gap between two consecutive pings exceeds 120 seconds.
+- **Session tracking** is done without using the `state` field — sessions are reconstructed by grouping pings per user, sorting by timestamp, and splitting whenever the gap between two consecutive pings exceeds 120 seconds. Note that discarding invalid session_ping events during cleaning may cause a single real session to appear as multiple shorter sessions, if the gap created by the removed ping exceeds 120 seconds.
 - **Partial matches** are considered valid if there is at least one `match_start` and one `match_finish` between two players. If a second `match_start` appears before the first match finishes, the first match is discarded as invalid.
 - **Users without a registration event** are excluded from all statistics — their sessions and matches are not inserted into the database.
 - **Zero duration sessions** (only one valid ping) are kept — they represent very short gameplay sessions and contribute 0 to total playtime.
